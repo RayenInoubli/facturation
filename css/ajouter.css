@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+section{
+    width: 70%;
+}
+form{
+    border: #ddd solid 1px;
+    border-radius: 5px;
+    padding: 10px;
+}
+.annuler{
+    background-color: rgb(255, 21, 21);
+    border: rgb(255, 21, 21);
+}
+.annuler:hover{
+    background-color: rgb(216, 9, 9);
+    border: rgb(216, 9, 9);
+}
+h1{
+    text-align: center;
+    margin-bottom: 1rem;
+}

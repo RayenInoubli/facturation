@@ -1,0 +1,57 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+}
+.table{
+    table-layout: fixed;
+    width: 90%;
+}
+.header{
+    height: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+.new{
+    border-bottom: #ddd solid 2px;
+    border-top: #ddd solid 2px;
+    padding: 5px;
+}
+.new, .recherche{
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+section{
+    display: flex ;
+    align-items: center ;
+    justify-content: center ;
+    flex-direction: column ;
+}
+.fa-trash{
+    width: 28px;
+    height: 28px;
+}
+.fa-edit{
+    width: 20x;
+    height: 20px;
+}
+.fa-info-circle{
+    width: 25px;
+    height: 25px;
+}
+.icons{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.rechBtn{
+    border: none;
+    background-color: transparent;
+}
