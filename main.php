@@ -18,7 +18,7 @@ $nbr_pages = ceil($nombreFactures['cnt'] / $nbr_element_par_page);
 $debut = ($page-1) * $nbr_element_par_page;
 if (isset($_POST['rechBtn'])) {
   $req = $_POST['recherche'];
-  $factures = afficherRechFactures($conn, $req);
+  $factures = afficherRechFactures($conn, $req, $userId);
 } else {
   $factures = afficherTousFactures($conn, $userId, $debut, $nbr_element_par_page);
 }

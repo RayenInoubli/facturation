@@ -46,7 +46,7 @@ function worngPassword($conn, $email, $password){
 
     if ($row = mysqli_fetch_assoc($result)) {
 
-        if($row["password"] == $password) {
+        if(password_verify($password, $row["password"]) == $password) {
             $return = false;
         } else {
             $return = true;   
@@ -64,7 +64,7 @@ function worngPassword($conn, $email, $password){
 function createUser($conn, $email, $password){
 
     $id = uniqid($email);
-    //$hashPwd = password_hash($password, PASSWORD_DEFAULT);
+    $hashPwd = password_hash($password, PASSWORD_DEFAULT);
 
     $query = "INSERT INTO `users`(id, email, password) VALUES (?,?,?);";
     $stmt = mysqli_stmt_init($conn);
@@ -73,7 +73,7 @@ function createUser($conn, $email, $password){
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "sss", $id, $email, $password);
+    mysqli_stmt_bind_param($stmt, "sss", $id, $email, $hashPwd);
     mysqli_stmt_execute($stmt);
 
     mysqli_stmt_close($stmt);
@@ -205,13 +205,14 @@ function afficherTousFactures($conn, $userId, $debut, $nbr_element_par_page){
     mysqli_stmt_close($stmt);
 }
 
-function afficherRechFactures($conn, $req){
+function afficherRechFactures($conn, $req, $userId){
 
     $query = "SELECT * FROM factures 
               WHERE police like '%$req%'
               OR client like '%$req%'
               OR datePay like '%$req%'
-              OR etat like '%$req%';";
+              OR etat like '%$req%'
+              HAVING userId = ?;";
 
     $stmt = mysqli_stmt_init($conn);
 
@@ -220,6 +221,7 @@ function afficherRechFactures($conn, $req){
         exit();
     }
 
+    mysqli_stmt_bind_param($stmt, "s", $userId);
     mysqli_stmt_execute($stmt);
 
     $result = mysqli_stmt_get_result($stmt);
